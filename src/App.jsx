@@ -70,14 +70,14 @@ function App() {
   if (loading) return <Loader />;
 
   return (
-    <div className={darkMode ? "bg-gray-950 text-white" : "bg-white text-gray-900"}>
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Home />
-      <About />
-      <Projects />
-      <Contact />
-      <Footer />
-    </div>
+      <div className={darkMode ? "bg-gray-950 text-white" : "bg-white text-gray-900"}>
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Home darkMode={darkMode} />
+        <About darkMode={darkMode} />
+        <Projects darkMode={darkMode} />
+        <Contact darkMode={darkMode} />
+        <Footer darkMode={darkMode} />
+      </div>
   );
 }
 

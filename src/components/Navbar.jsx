@@ -1,107 +1,24 @@
-// import React, { useState } from "react";
-// import { Link as ScrollLink } from "react-scroll";
-
-// const Navbar = () => {
-//   const [darkMode, setDarkMode] = useState(false);
-
-//   const toggleTheme = () => setDarkMode(!darkMode);
-
-//   return (
-    
-//     <nav
-//       className={`fixed top-0 w-full bg-black text-white py-4 z-50 shadow-md ${
-//         darkMode ? "bg-gray-900 text-white" : "bg-black text-white"
-//       }`}
-//     >
-//       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-//         {/* Logo */}
-//         <h1 className="text-2xl font-bold text-purple-400">NOMAN</h1>
-
-//         {/* Links */}
-//         <ul className="flex gap-6 font-medium">
-//           <li>
-//             <ScrollLink
-//               to="home"
-//               smooth={true}
-//               duration={500}
-//               offset={-80}
-//               className="cursor-pointer hover:text-purple-400 transition"
-//             >
-//               Home
-//             </ScrollLink>
-//           </li>
-//           <li>
-//             <ScrollLink
-//               to="about"
-//               smooth={true}
-//               duration={500}
-//               offset={-80}
-//               className="cursor-pointer hover:text-purple-400 transition"
-//             >
-//               About
-//             </ScrollLink>
-//           </li>
-//           <li>
-//             <ScrollLink
-//               to="projects"
-//               smooth={true}
-//               duration={500}
-//               offset={-80}
-//               className="cursor-pointer hover:text-purple-400 transition"
-//             >
-//               Projects
-//             </ScrollLink>
-//           </li>
-//           <li>
-//             <ScrollLink
-//               to="contact"
-//               smooth={true}
-//               duration={500}
-//               offset={-80}
-//               className="cursor-pointer hover:text-purple-400 transition"
-//             >
-//               Contact
-//             </ScrollLink>
-//           </li>
-//         </ul>
-
-//         {/* Right Side Buttons */}
-//         <div className="flex items-center gap-4">
-//           <button
-//             onClick={toggleTheme}
-//             className="border border-purple-500 px-2 py-1 rounded text-sm hover:bg-purple-600 hover:text-white transition"
-//           >
-//             {darkMode ? "☀️ Light" : "🌙 Dark"}
-//           </button>
-//           <button className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded-md text-sm transition">
-//             Hire Me
-//           </button>
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
-import React from "react";
+import React, { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import { HiMenu, HiX } from "react-icons/hi";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = ["home", "about", "projects", "contact"];
 
   return (
-    <nav className={`fixed top-0 w-full py-4 z-50 shadow-md transition-colors duration-300 ${
-        darkMode ? "bg-gray-900 text-white" : "bg-black text-white"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-        
+    <nav className={`fixed top-0 w-full z-50 shadow-md transition-colors duration-300 ${
+      darkMode ? "bg-gray-900 text-white" : "bg-black text-white"
+    }`}>
+      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+
         {/* Logo */}
         <h1 className="text-2xl font-bold text-purple-400">NOMAN</h1>
 
-        {/* Links */}
-        <ul className="flex gap-6 font-medium">
-          {["home", "about", "projects", "contact"].map((section) => (
+        {/* Desktop Links */}
+        <ul className="hidden md:flex gap-6 font-medium">
+          {navLinks.map((section) => (
             <li key={section}>
               <ScrollLink
                 to={section}
@@ -109,6 +26,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 duration={500}
                 offset={-80}
                 className="cursor-pointer hover:text-purple-400 transition capitalize"
+                onClick={() => setMenuOpen(false)}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
               </ScrollLink>
@@ -116,15 +34,55 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           ))}
         </ul>
 
-        {/* Dark Mode Toggle Only */}
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="border border-purple-500 px-3 py-1 rounded text-sm hover:bg-purple-600 hover:text-white transition"
-        >
-          {darkMode ? "☀️ Light" : "🌙 Dark"}
-        </button>
+        {/* Right Side — Desktop */}
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="border border-purple-500 px-3 py-1 rounded text-sm hover:bg-purple-600 hover:text-white transition"
+          >
+            {darkMode ? "☀️ Light" : "🌙 Dark"}
+          </button>
+        </div>
+
+        {/* Mobile Right Side */}
+        <div className="flex md:hidden items-center gap-3">
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="border border-purple-500 px-2 py-1 rounded text-xs hover:bg-purple-600 transition"
+          >
+            {darkMode ? "☀️" : "🌙"}
+          </button>
+          {/* Hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-2xl text-purple-400"
+          >
+            {menuOpen ? <HiX /> : <HiMenu />}
+          </button>
+        </div>
 
       </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className={`md:hidden px-6 pb-4 flex flex-col gap-4 font-medium transition-all duration-300 ${
+          darkMode ? "bg-gray-900" : "bg-black"
+        }`}>
+          {navLinks.map((section) => (
+            <ScrollLink
+              key={section}
+              to={section}
+              smooth={true}
+              duration={500}
+              offset={-80}
+              className="cursor-pointer hover:text-purple-400 transition capitalize border-b border-gray-700 pb-2"
+              onClick={() => setMenuOpen(false)}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </ScrollLink>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };

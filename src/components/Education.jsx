@@ -48,7 +48,7 @@
 
 // export default Education;
 
-const Education = () => {
+const Education = ({ darkMode }) => {
   const educationList = [
     {
       title: "BS Software Engineering (BSSE)",
@@ -89,7 +89,9 @@ const Education = () => {
   ];
 
   return (
-    <section className="bg-gray-950 text-white py-12 px-6">
+      <section className={`py-12 px-6 transition-colors duration-300 ${
+      darkMode ? "bg-gray-800 text-white" : "bg-gray-950 text-white"
+    }`}>
       <h2 className="text-3xl font-bold text-center text-purple-400 mb-8">🎓 Education</h2>
       <div className="max-w-4xl mx-auto space-y-6">
         {educationList.map((edu, index) => (

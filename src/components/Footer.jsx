@@ -1,33 +1,46 @@
-// src/components/Footer.js
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaYoutube } from "react-icons/fa";
 
-function Footer() {
+function Footer({ darkMode }) {
   return (
-    <footer className="bg-black text-white py-6 px-4 mt-12">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
-        <p className="text-sm mb-2 md:mb-0">
-          © {new Date().getFullYear()} Noman. All rights reserved.
+    <footer className={`py-6 px-4 transition-colors duration-300 ${
+      darkMode ? "bg-gray-950 text-white" : "bg-black text-white"
+    }`}>
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <p className="text-sm text-gray-400 text-center md:text-left">
+          © {new Date().getFullYear()}{' '}
+          <span className="text-purple-400 font-semibold">Noman Mehmood Azami</span>
+          . All rights reserved.
         </p>
-        <div className="flex gap-4 text-xl">
+
+        <div className="flex gap-5 text-xl">
           <a
             href="https://github.com/Nomanazami/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-400 transition"
+            className="hover:text-purple-400 transition"
           >
             <FaGithub />
           </a>
           <a
-            href="https://www.linkedin.com/in/noman-mehmood-azami-71617b303/"
+            href="https://www.linkedin.com/in/noman-azami/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-400 transition"
+            className="hover:text-purple-400 transition"
           >
             <FaLinkedin />
           </a>
           <a
-            href="mailto:nomanazami2005@gmail.com"
-            className="hover:text-gray-400 transition"
+            href="https://www.youtube.com/@NomanNexus2005"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-red-500 transition"
+          >
+            <FaYoutube />
+          </a>
+          <a
+            href="mailto:nomanmehmood2005@gmail.com"
+            className="hover:text-purple-400 transition"
           >
             <FaEnvelope />
           </a>
