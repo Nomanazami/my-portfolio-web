@@ -4,17 +4,15 @@ import { Typewriter } from "react-simple-typewriter";
 
 const Home = ({ darkMode }) => {
   return (
-    <div
-      id="home"
-      className="min-h-screen w-full flex flex-col md:flex-row overflow-hidden"
-    >
+    <div id="home" className="w-full flex flex-col md:flex-row">
+
       {/* Left Side */}
       <div
-        className={`w-full md:w-1/2 flex items-center justify-center p-8 ${
+        className={`w-full md:w-1/2 flex items-center justify-center px-8 py-14 md:py-0 md:min-h-screen ${
           darkMode ? "bg-gray-950" : "bg-[#0f172a]"
         } text-white`}
       >
-        <div className="max-w-md">
+        <div className="max-w-md w-full">
           <h1 className="text-4xl font-bold mb-4">
             Hi, I'm <span className="text-purple-400">Noman</span>
           </h1>
@@ -63,9 +61,10 @@ const Home = ({ darkMode }) => {
       </div>
 
       {/* Right Side */}
-      <div className="w-full md:w-1/2 bg-black text-white flex items-center justify-center p-8">
+      <div className="w-full md:w-1/2 bg-black text-white flex items-center justify-center px-8 py-10 md:py-0 md:min-h-screen">
         <Hero />
       </div>
+
     </div>
   );
 };

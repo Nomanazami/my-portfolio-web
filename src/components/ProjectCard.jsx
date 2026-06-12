@@ -1,4 +1,3 @@
-// src/components/About.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import profilePic from '../aassets/profilePic.png'; // Adjust the path as necessar
